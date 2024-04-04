@@ -3,11 +3,6 @@ exists()
 {
   command -v "$1" >/dev/null 2>&1
 }
-if exists curl; then
-echo ''
-else
-  sudo apt update && sudo apt install curl -y < "/dev/null"
-fi
 
 echo 'seed kelimeleri girin'
 read -r -p "seed:" kelimeler
@@ -50,6 +45,8 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable availd
 sudo systemctl restart availd
-sleep 1
-sudo journalctl -u availd -fo cat
+
+echo -e "Getting pub key... \e[0m" && sleep 10
+journalctl -u availd.service -n 30 | grep "public key:"
+
 
