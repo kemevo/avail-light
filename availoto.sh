@@ -9,14 +9,13 @@ else
   sudo apt update && sudo apt install curl -y < "/dev/null"
 fi
 
-# Set DNS Configuration
 echo 'seed kelimeleri girin'
 read -r -p "seed:" kelimeler
 sleep 0.5
 touch identity.toml
 echo "avail_secret_seed_phrase = '${kelimeler}'" > identity.toml
 
-# Update system and install build tools
+# Update system and install  tools
 sudo apt update
 sudo apt-get install make clang pkg-config libssl-dev build-essential
 sleep 1
