@@ -13,7 +13,7 @@ screen -S avail
 ```
 wget -O availoto.sh https://raw.githubusercontent.com/kemevo/avail-light/main/availoto.sh && chmod +x availoto.sh && ./availoto.sh
 ```
-# Get Pub Key:
+# Check node:
 ```
-journalctl -u availd.service -n 30 | grep "public key:"
+curl -I "localhost:7000/health"
 ```
