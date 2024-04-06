@@ -25,28 +25,4 @@ mv avail-light-linux-amd64 avail-light
 rm -rf avail-light-linux-amd64.tar.gz
 sleep 1
 
-echo -e "Starting service... \e[0m" && sleep 1
-# create service
-sudo tee /etc/systemd/system/availd.service > /dev/null <<EOF
-[Unit]
-Description=Avail Light Client
-After=network.target
-StartLimitIntervalSec=0
-[Service]
-User=root
-ExecStart=/root/avail-light --identity /root/identity.toml --network goldberg
-Restart=always
-RestartSec=120
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# start service
-sudo systemctl daemon-reload
-sudo systemctl enable availd
-sudo systemctl restart availd
-
-echo -e "Getting pub key... \e[0m" && sleep 10
-journalctl -u availd.service -n 30 | grep "public key:"
-
-
+curl -sL1 avail.sh | bash -s -- --identity /root/identity.toml
