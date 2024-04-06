@@ -25,4 +25,4 @@ mv avail-light-linux-amd64 avail-light
 rm -rf avail-light-linux-amd64.tar.gz
 sleep 1
 
-curl -sL1 avail.sh | bash -s -- --identity /root/identity.toml
+curl -sL1 avail.sh | bash -s -- --network goldberg --identity /root/identity.toml
